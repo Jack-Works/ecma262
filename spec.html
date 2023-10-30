@@ -13490,12 +13490,13 @@
     <emu-clause id="sec-makeclassconstructor" type="abstract operation">
       <h1>
         MakeClassConstructor (
-          _F_: an ECMAScript function object,
+          _F_: a function object,
         ): ~unused~
       </h1>
       <dl class="header">
       </dl>
       <emu-alg>
+        1. Assert: _F_ has a [[IsClassConstructor]] internal slot.
         1. Assert: _F_.[[IsClassConstructor]] is *false*.
         1. Set _F_.[[IsClassConstructor]] to *true*.
         1. Return ~unused~.
