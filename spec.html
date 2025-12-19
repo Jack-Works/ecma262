@@ -25616,20 +25616,24 @@
               1. Set the running execution context's PrivateEnvironment to _outerPrivateEnvironment_.
               1. Return ? _result_.
         1. For each element _e_ of _staticElements_, do
-          1. If _e_.[[Kind]] is ~field~, then
+          1. If _e_ is a ClassElementDefinition Record and _e_.[[Kind]] is ~field~, then
             1. Let _result_ be Completion(ApplyDecoratorsToElementDefinition(_F_, _e_, _e_.[[ExtraInitializers]], *true*)).
             1. If _result_ is an abrupt completion, then
               1. Set the running execution context's PrivateEnvironment to _outerPrivateEnvironment_.
               1. Return ? _result_.
         1. For each element _e_ of _instanceElements_, do
-          1. If _e_.[[Kind]] is ~field~, then
+          1. If _e_ is a ClassElementDefinition Record and _e_.[[Kind]] is ~field~, then
             1. Let _result_ be Completion(ApplyDecoratorsToElementDefinition(_proto_, _e_, _e_.[[ExtraInitializers]], *false*)).
             1. If _result_ is an abrupt completion, then
               1. Set the running execution context's PrivateEnvironment to _outerPrivateEnvironment_.
               1. Return ? _result_.
         1. Set _F_.[[Elements]] to _instanceElements_.
         1. Set _F_.[[Initializers]] to _instanceMethodExtraInitializers_.
-        1. Perform ? InitializePrivateMethods(_F_, _staticElements_).
+        1. Let _staticElementsExcludeStaticBlocks_ be a new empty List.
+        1. For each element _e_ of _staticElements_, do
+          1. If _e_ is a ClassElementDefinition Record, then
+            1. Append _e_ to _staticElementsExcludeStaticBlocks_.
+        1. Perform ? InitializePrivateMethods(_F_, _staticElementsExcludeStaticBlocks_).
         1. Let _classExtraInitializers_ be a new empty List.
         1. Let _newF_ be Completion(ApplyDecoratorsToClassDefinition(_F_, _decorators_, _className_, _classExtraInitializers_)).
         1. If _newF_ is an abrupt completion, then
