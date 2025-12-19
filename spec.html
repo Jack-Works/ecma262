@@ -25347,7 +25347,6 @@
           1. Let _o_ be the *this* value.
           1. Return ? PrivateGet(_o_, _privateStateName_).
         1. Let _getter_ be CreateBuiltinFunction(_getterClosure_, 0, *"get"*, « »).
-        1. Perform SetFunctionName(_getter_, _name_, *"get"*).
         1. Perform MakeMethod(_getter_, _homeObject_).
         1. Return _getter_.
       </emu-alg>
@@ -25369,7 +25368,6 @@
           1. Perform ? PrivateSet(_o_, _privateStateName_, _value_).
           1. Return *undefined*.
         1. Let _setter_ be CreateBuiltinFunction(_setterClosure_, 1, *"set"*, « »).
-        1. Perform SetFunctionName(_setter_, _name_, *"set"*).
         1. Perform MakeMethod(_setter_, _homeObject_).
         1. Return _setter_.
       </emu-alg>
